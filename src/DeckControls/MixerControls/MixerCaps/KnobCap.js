@@ -1,16 +1,24 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
 
-function KnobCap({width = 60, rotation = -1}) {
-    return <KnobCircle width={width}>
-        <Knob width={width}/>
-        <MarkerRotateDiv rotation={rotation}>
-            <KnobMarker width={width}/>
-        </MarkerRotateDiv>
-    </KnobCircle>
+function KnobCap({width = 60, rotation = -1, label = 'Filter', leftCircleText = '-6dB', rightCircleText = '+6dB'}) {
+    const rotationNormalized = rotation * maxRotation;
+    return <Grid width={width}>
+        <KnobCircle width={width}>
+            <Knob width={width}/>
+            <MarkerRotateDiv rotation={rotationNormalized}>
+                <KnobMarker width={width}/>
+            </MarkerRotateDiv>
+        </KnobCircle>
+        <LeftCircleText width={width}>{leftCircleText}</LeftCircleText>
+        <Label width={width}>{label}</Label>
+        <RightCircleText width={width}>{rightCircleText}</RightCircleText>
+    </Grid>
 }
 
 export default KnobCap;
+
+const maxRotation = 132;
 
 const KnobCircle = styled.div`
     display: grid;
@@ -20,12 +28,16 @@ const KnobCircle = styled.div`
     border: ${props => props.width / 30}px solid red;
     box-sizing: border-box;
     border-radius: 50%;
+    border-bottom: 3px solid transparent;
 `;
 
-const Knob = styled.div`
+const CenteredGrid = styled.div`
     grid-column: 1;
     grid-row: 1;
     align-self: center;
+`;
+
+const Knob = CenteredGrid.extend`
     width: ${props => props.width * 0.8}px;
     height: ${props => props.width  * 0.8}px;
     box-sizing: border-box;
@@ -33,18 +45,13 @@ const Knob = styled.div`
     border-radius: 50%;
 `;
 
-const MarkerRotateDiv = styled.div`
-    grid-column: 1;
-    grid-row: 1;
+const MarkerRotateDiv = CenteredGrid.extend`
     display: grid;
     justify-items: center;
-    align-self: center;
-    transform: rotate(${props => props.rotation * 135}deg);
+    transform: rotate(${props => props.rotation}deg);
 `;
 
-const KnobMarker = styled.div`
-    grid-column: 1;
-    grid-row: 1;
+const KnobMarker = CenteredGrid.extend`
     overflow: hidden;
     border-radius: ${props => props.width / 15}px;
     width: ${props => props.width * 0.13}px;
@@ -53,4 +60,35 @@ const KnobMarker = styled.div`
     border: ${props => props.width / 30}px solid black;
     box-sizing: border-box;
     background-color: white;
+`;
+
+
+const Grid = styled.div`
+    height: ${props => props.width * 1.35}px;
+    display: grid;
+`;
+
+const RightCircleText = styled.div`
+    grid-row: 2;
+    grid-column: 1;
+    font-size: ${props => props.width * 0.14}px;
+    margin-top: -${props => props.width * 0.15}px;
+    align-self: end;
+    justify-self: end;
+`;
+
+const LeftCircleText = styled.div`
+    grid-row: 2;
+    grid-column: 1;
+    font-size: ${props => props.width * 0.14}px;
+    margin-top: -${props => props.width * 0.15}px;
+    align-self: end;
+    justify-self: start;
+`;
+
+const Label = styled.div`
+    grid-row: 3;
+    grid-column: 1;
+    justify-self: center;
+    font-size: ${props => props.width * 0.2}px;
 `;
