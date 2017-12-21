@@ -15,7 +15,6 @@ export default FaderCap;
 const OuterPart = styled.div`
     flex: 5;
     background-color: #333;
-    border: 1px solid lightgray;
     overflow: hidden;
 `;
 

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import DeckControl from "./DeckControls/DeckControl";
 import TwoChannelMixer from "./Mixer/Channel2Mixer";
 import FaderCap from "./DeckControls/MixerControls/MixerCaps/FaderCap";
+import KnobCap from "./DeckControls/MixerControls/MixerCaps/KnobCap";
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
             <TwoChannelMixer/>
             <DeckControl index={2}/>
             <FaderCap/>
+            <KnobCap/>
         </Content>
       </Container>
     );
