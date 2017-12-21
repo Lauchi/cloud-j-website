@@ -4,7 +4,9 @@ import styled from 'styled-components'
 function KnobCap({width = 60, rotation = -0.4}) {
     return <KnobCircle width={width}>
         <Knob width={width}/>
-        <KnobMarker width={width}/>
+        <MarkerRotateDiv rotation={rotation}>
+            <KnobMarker width={width}/>
+        </MarkerRotateDiv>
     </KnobCircle>
 }
 
@@ -30,10 +32,19 @@ const Knob = styled.div`
     background-color: #333;
     border-radius: 50%;
 `;
+
+const MarkerRotateDiv = styled.div`
+    grid-column: 1;
+    grid-row: 1;
+    display: grid;
+    justify-items: center;
+    align-self: center;
+    transform: rotate(${props => props.rotation * 0.3}deg);
+`;
+
 const KnobMarker = styled.div`
     grid-column: 1;
     grid-row: 1;
-    align-self: center;
     overflow: hidden;
     border-radius: ${props => props.width / 15}px;
     width: ${props => props.width * 0.13}px;
