@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
 
-function KnobCap({width = 60, rotation = -0.4}) {
+function KnobCap({width = 60, rotation = -1}) {
     return <KnobCircle width={width}>
         <Knob width={width}/>
         <MarkerRotateDiv rotation={rotation}>
@@ -39,7 +39,7 @@ const MarkerRotateDiv = styled.div`
     display: grid;
     justify-items: center;
     align-self: center;
-    transform: rotate(${props => props.rotation * 0.3}deg);
+    transform: rotate(${props => props.rotation * 135}deg);
 `;
 
 const KnobMarker = styled.div`
