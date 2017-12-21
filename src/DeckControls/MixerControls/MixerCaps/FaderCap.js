@@ -1,40 +1,46 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
-import {injectGlobal} from 'styled-components';
 
-function FaderCap() {
+function FaderCap({width = 80}) {
 
-    return <FaderBoundaries>
-        <CornerTop/>
+    return <FaderBoundaries width={width}>
+        <CornerTop width={width}/>
         <InnerLine/>
-        <CornerBottom/>
+        <CornerBottom width={width}/>
     </FaderBoundaries>
 }
 
 export default FaderCap;
 
-
-
 const OuterPart = styled.div`
-    flex: 4;
+    flex: 5;
     background-color: #333;
-`;
-
-const CornerTop = OuterPart.extend`
+    border: 1px solid lightgray;
+    overflow: hidden;
 `;
 
 const FaderBoundaries = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: 40px;
-    width: 70px;
-    background-color: #333;
+    display: grid;
+    height: ${props => props.width / 2}px;
+    width: ${props => props.width}px;
 `;
 
 const InnerLine = styled.div`
-flex: 1;
+    grid-row: 6;
+    grid-column: 1;
     background-color: #fff;
 `;
 
+const CornerTop = OuterPart.extend`
+    grid-row: 1 / 5;
+    grid-column: 1;
+    border-top-right-radius: ${props => props.width / 12}px;
+    border-top-left-radius: ${props => props.width / 12}px;
+`;
+
 const CornerBottom =  OuterPart.extend`
+    grid-row: 6 / 10;
+    grid-column: 1;
+    border-bottom-right-radius: ${props => props.width / 12}px;
+    border-bottom-left-radius: ${props => props.width / 12}px;
 `;
