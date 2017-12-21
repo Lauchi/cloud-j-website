@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styled from 'styled-components'
 
 function KnobCap({width = 60, rotation = -1, label = 'Filter', leftCircleText = '-6dB', rightCircleText = '+6dB'}) {
@@ -61,7 +61,6 @@ const KnobMarker = CenteredGrid.extend`
     box-sizing: border-box;
     background-color: white;
 `;
-
 
 const Grid = styled.div`
     height: ${props => props.width * 1.35}px;
