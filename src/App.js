@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 import DeckControl from "./DeckControls/DeckControl";
 import TwoChannelMixer from "./Mixer/Channel2Mixer";
+import FaderCap from "./DeckControls/MixerControls/MixerCaps/FaderCap";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
             <DeckControl index={1}/>
             <TwoChannelMixer/>
             <DeckControl index={2}/>
+            <FaderCap/>
         </Content>
       </Container>
     );

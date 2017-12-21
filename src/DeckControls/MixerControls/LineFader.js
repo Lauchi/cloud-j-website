@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
-import { injectGlobal } from 'styled-components';
+import {injectGlobal} from 'styled-components';
 
 class LineFader extends Component {
     constructor() {
@@ -43,19 +43,11 @@ const FaderInput = styled.input`
     height: 400px;
     width: 50px;
     -webkit-appearance: slider-vertical;
-    ::-webkit-slider-thumb {
+    &::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 15px;
-        height: 15px;
-        border:1px solid black;
-        
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
-        background: #80e4df; /* Old browsers */
-        background: -webkit-linear-gradient(#55eff7 0%, #44def6 13%, #33cde5 33%, #22bcd4 47%, #11abc3 80%, #009ab2 100%);
-        background: -moz-linear-gradient(#55eff7 0%, #44def6 13%, #33cde5 33%, #22bcd4 47%, #11abc3 80%, #009ab2 100%);
-        background: -o-linear-gradient(#55eff7 0%, #44def6 13%, #33cde5 33%, #22bcd4 47%, #11abc3 80%, #009ab2 100%);
-        background: linear-gradient(#55eff7 0%, #44def6 13%, #33cde5 33%, #22bcd4 47%, #11abc3 80%, #009ab2 100%); /* W3C */
+        width: 40px;
+        height: 40px;
+        border:3px solid black;
   }
 `;
 
