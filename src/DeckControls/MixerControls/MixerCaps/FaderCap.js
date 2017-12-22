@@ -15,7 +15,7 @@ export default FaderCap;
 
 const FaderBoundaries = styled.div`
     position: absolute;
-    left: -${props => props.width / (20 / 9)}px;
+    left: -${props => props.width * (9 / 20)}px;
     bottom: -${props => props.width / 5}px;
     display: grid;
     height: ${props => props.width / 2}px;
@@ -24,11 +24,10 @@ const FaderBoundaries = styled.div`
 
 const OuterPart = styled.div`
     background-color: #333;
-    overflow: hidden;
 `;
 
 const InnerLine = styled.div`
-    grid-row: 6;
+    grid-row: 5;
     grid-column: 1;
     background-color: white;
 `;
