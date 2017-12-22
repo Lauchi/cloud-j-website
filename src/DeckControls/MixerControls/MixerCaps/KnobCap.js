@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components'
 
-function KnobCap({width = 60, rotation = -1, label = 'Filter', leftCircleText = '-6dB', rightCircleText = '+6dB'}) {
+function KnobCap({width = 60, rotation = -1, outerCircleColor = 'orange', label = 'Filter', leftCircleText = '-6dB', rightCircleText = '+6dB'}) {
     const rotationNormalized = rotation * maxRotation;
     return <Grid width={width}>
-        <KnobCircle width={width}>
+        <KnobCircle width={width} color={outerCircleColor}>
             <Knob width={width}/>
             <MarkerRotateDiv rotation={rotationNormalized}>
                 <KnobMarker width={width}/>
@@ -25,7 +25,7 @@ const KnobCircle = styled.div`
     justify-items: center;
     width: ${props => props.width}px;
     height: ${props => props.width}px;
-    border: ${props => props.width / 30}px solid red;
+    border: ${props => props.width / 30}px solid ${props => props.color};
     box-sizing: border-box;
     border-radius: 50%;
     border-bottom: 3px solid transparent;

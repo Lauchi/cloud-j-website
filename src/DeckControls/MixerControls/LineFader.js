@@ -19,7 +19,7 @@ class LineFader extends Component {
             <ReactSimpleRange
                 vertical
                 verticalSliderHeight="400px"
-                defaultValue={50}
+                va
             >
                 <FaderCap/>
             </ReactSimpleRange>
