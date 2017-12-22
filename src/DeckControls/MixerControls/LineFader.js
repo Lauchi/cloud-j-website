@@ -19,7 +19,8 @@ class LineFader extends Component {
             <ReactSimpleRange
                 vertical
                 verticalSliderHeight="400px"
-                va
+                value={rate}
+                onChange={(event) => this.handleChange(event)}
             >
                 <FaderCap/>
             </ReactSimpleRange>
@@ -27,7 +28,7 @@ class LineFader extends Component {
     }
 
     handleChange(event) {
-        const value = event.target.value;
+        const value = event.value;
         this.setState({rate: value});
     }
 }
