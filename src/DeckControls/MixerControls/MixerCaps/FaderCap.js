@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
 
-function FaderCap({widthNew = 80}) {
+function FaderCap({width = 80}) {
 
-    return <FaderBoundaries width={widthNew}>
-        <CapTop width={widthNew}/>
+    return <FaderBoundaries width={width}>
+        <CapTop width={width}/>
         <InnerLine/>
-        <CapBottom width={widthNew}/>
+        <CapBottom width={width}/>
     </FaderBoundaries>
 }
 
@@ -15,8 +15,8 @@ export default FaderCap;
 
 const FaderBoundaries = styled.div`
     position: absolute;
-    left: -36px;
-    bottom: -16px;
+    left: -${props => props.width / (20 / 9)}px;
+    bottom: -${props => props.width / 5}px;
     display: grid;
     height: ${props => props.width / 2}px;
     width: ${props => props.width}px;
