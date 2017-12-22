@@ -1,43 +1,46 @@
 import React from 'react';
 import styled from 'styled-components'
 
-function FaderCap({width = 80}) {
+function FaderCap({widthNew = 80}) {
 
-    return <FaderBoundaries width={width}>
-        <CornerTop width={width}/>
+    return <FaderBoundaries width={widthNew}>
+        <CapTop width={widthNew}/>
         <InnerLine/>
-        <CornerBottom width={width}/>
+        <CapBottom width={widthNew}/>
     </FaderBoundaries>
 }
 
 export default FaderCap;
 
-const OuterPart = styled.div`
-    flex: 5;
-    background-color: #333;
-    overflow: hidden;
-`;
 
 const FaderBoundaries = styled.div`
+    position: absolute;
+    left: -36px;
+    bottom: -16px;
     display: grid;
     height: ${props => props.width / 2}px;
     width: ${props => props.width}px;
 `;
 
+const OuterPart = styled.div`
+    background-color: #333;
+    overflow: hidden;
+`;
+
 const InnerLine = styled.div`
     grid-row: 6;
     grid-column: 1;
-    background-color: #fff;
+    background-color: white;
 `;
 
-const CornerTop = OuterPart.extend`
+const CapTop = OuterPart.extend`
     grid-row: 1 / 5;
     grid-column: 1;
     border-top-right-radius: ${props => props.width / 12}px;
     border-top-left-radius: ${props => props.width / 12}px;
 `;
 
-const CornerBottom =  OuterPart.extend`
+const CapBottom =  OuterPart.extend`
     grid-row: 6 / 10;
     grid-column: 1;
     border-bottom-right-radius: ${props => props.width / 12}px;

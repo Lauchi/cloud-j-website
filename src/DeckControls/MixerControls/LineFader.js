@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
-import {injectGlobal} from 'styled-components';
+import FaderCap from "./MixerCaps/FaderCap";
+import ReactSimpleRange from 'react-simple-range';
 
 class LineFader extends Component {
     constructor() {
@@ -15,11 +16,13 @@ class LineFader extends Component {
         const {rate} = {...this.state};
 
         return <FaderContainer>
-            <FaderInput type="range"
-                        min="0"
-                        max="127"
-                        value={rate} step="1"
-                        onChange={(event) => this.handleChange(event)}/>
+            <ReactSimpleRange
+                vertical
+                verticalSliderHeight="400px"
+                defaultValue={50}
+            >
+                <FaderCap/>
+            </ReactSimpleRange>
         </FaderContainer>
     }
 
@@ -32,23 +35,11 @@ class LineFader extends Component {
 export default LineFader;
 
 const FaderContainer = styled.div`
+    position: relative;
     background-color: black;
-    border: 3px solid silver;
-    padding-bottom: 0;
-    display: flex;
-`;
-
-const FaderInput = styled.input`
-    flex: 1;
-    height: 400px;
-    width: 50px;
-    -webkit-appearance: slider-vertical;
-    &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 40px;
-        height: 40px;
-        border:3px solid black;
-  }
+    width: 90px;
+    padding-top:30px;
+    padding-bottom:30px;
 `;
 
 
