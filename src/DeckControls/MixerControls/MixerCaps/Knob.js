@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 import styled from 'styled-components'
 import KnobCap from "./KnobCap";
 
@@ -86,7 +87,7 @@ const minValue = -100;
 const Container = styled.div`
     position: relative;
     width: ${props => props.diameter}px;
-    height: ${props => props.diameter * 4}px;
+    height: ${props => props.diameter}px;
 `;
 
 const FaderHider = styled.div`position: absolute;
@@ -123,3 +124,11 @@ const KnobInput = styled.input`
         height: 0;
     }
 `;
+
+Knob.defaultProps = {
+    diameter: 60
+};
+
+Knob.propTypes = {
+    diameter: PropTypes.number
+};

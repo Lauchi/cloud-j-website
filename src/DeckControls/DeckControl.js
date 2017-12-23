@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import styled from 'styled-components'
 import LineFader from "./MixerControls/LineFader";
+import Knob from "./MixerControls/MixerCaps/Knob";
 
 class DeckControl extends Component {
     constructor() {
         super();
     }
     render() {
-        return <LineFader/>
+
+        return <div>
+            <Knob/>
+            <LineFader/>
+        </div>
     }
 }
 

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
+import PropTypes from 'prop-types';
 import FaderCap from "./MixerCaps/FaderCap";
 import ReactSimpleRange from 'react-simple-range';
 
@@ -13,12 +14,13 @@ class LineFader extends Component {
     }
 
     render() {
-        const {rate} = {...this.state};
-
+        const {rate} = this.state;
+        const {length} = this.props;
+        let lengthString = length + 'px';
         return <FaderContainer>
             <ReactSimpleRange
                 vertical
-                verticalSliderHeight="400px"
+                verticalSliderHeight={lengthString}
                 value={rate}
                 onChange={(event) => this.handleChange(event)}
             >
@@ -42,6 +44,14 @@ const FaderContainer = styled.div`
     padding-top:30px;
     padding-bottom:30px;
 `;
+
+LineFader.defaultProps = {
+    length: 400
+};
+
+LineFader.propTypes = {
+    length: PropTypes.number
+};
 
 
 
