@@ -61,10 +61,7 @@ const KnobMarker = CenteredGrid.extend`
 `;
 
 const Grid = styled.div`
-    grid-column: 1;
-    grid-row: 1;
-    align-self: center;
-    justify-self: center;
+    position: absolute;
     width: ${props => props.width}px;
     height: ${props => props.width}px;
     display: grid;
