@@ -40,7 +40,7 @@ export default class Knob extends React.Component {
                     onWheel={ () => React.findDOMNode(this.refs.input).focus()}
                 />
                 <LowerFaderHider/>
-                <KnobCapFocused rotation={this.state.value}/>
+                <KnobCap rotation={this.state.value}/>
             </Container>
         )
     }
@@ -50,10 +50,6 @@ const Container = styled.div`
     position: relative;
     width: 60px;
     height: 250px;
-`;
-
-const KnobCapFocused = styled(KnobCap)`
-    top: 120px;
 `;
 
 const FaderHider = styled.div`position: absolute;
