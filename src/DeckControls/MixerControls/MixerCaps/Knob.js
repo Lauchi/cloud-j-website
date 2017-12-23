@@ -8,7 +8,8 @@ export default class Knob extends React.Component {
 
         this.state = {
             value: 0,
-            offset: 0
+            offset: 0,
+            doubleClicked: false
         }
     }
 
@@ -26,7 +27,7 @@ export default class Knob extends React.Component {
             value: valueCleaned,
         }, () => {
             if (this.props.onChangeValue) {
-                this.props.onChangeValue(-this.state.value)
+                this.props.onChangeValue(this.state.value)
             }
         })
     }
@@ -63,20 +64,19 @@ export default class Knob extends React.Component {
     }
 
     resetKnob() {
-        const {clicked} = this.state;
-        if (clicked) {
+        const {doubleClicked} = this.state;
+        if (doubleClicked) {
             this.setState({
                 value: 0,
                 offset: 0,
             });
         }
         else {
-            this.setState({clicked: true});
+            this.setState({doubleClicked: true});
             setTimeout(() => {
-                this.setState({clicked: false})
+                this.setState({doubleClicked: false})
             }, 333);
         }
-
     }
 }
 
