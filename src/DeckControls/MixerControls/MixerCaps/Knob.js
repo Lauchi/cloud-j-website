@@ -27,10 +27,12 @@ export default class Knob extends React.Component {
     }
 
     render() {
+        const { diameter } = this.props;
         return (
-            <Container>
-                <UpperFaderHider/>
+            <Container diameter={diameter}>
+                <UpperFaderHider diameter={diameter}/>
                 <KnobInput
+                    diameter={diameter}
                     type="range"
                     min={-100}
                     max={100}
@@ -39,8 +41,8 @@ export default class Knob extends React.Component {
                     onChange={event => this.handleChange(event)}
                     onWheel={ () => React.findDOMNode(this.refs.input).focus()}
                 />
-                <LowerFaderHider/>
-                <KnobCap rotation={this.state.value}/>
+                <LowerFaderHider diameter={diameter}/>
+                <KnobCap diameter={diameter} rotation={this.state.value}/>
             </Container>
         )
     }
@@ -48,30 +50,30 @@ export default class Knob extends React.Component {
 
 const Container = styled.div`
     position: relative;
-    width: 60px;
-    height: 250px;
+    width: ${props => props.diameter}px;
+    height: ${props => props.diameter * 4}px;
 `;
 
 const FaderHider = styled.div`position: absolute;
-    width: 60px;
-    height: 92px;
+    width: ${props => props.diameter}px;
+    height: ${props => props.diameter * 1.6}px;
     z-index: 3;
 `;
 
 const UpperFaderHider = FaderHider.extend`
-    top: 60px;
+    top: ${props => props.diameter}px;
 `;
 
 const LowerFaderHider = FaderHider.extend`
-    top: -95px;
+    top: -${props => props.diameter * 1.6}px;
 `;
 
 const KnobInput = styled.input`
     position: absolute;
     -webkit-appearance: none;
-    height: 50px;
-    left: -93px;
-    width: 240px;
+    height: ${props => props.diameter}px;
+    left: -${props => props.diameter * 1.6}px;
+    width: ${props => props.diameter * 4}px;
     background-color: transparent;
     transform: rotate(-90deg);
     z-index: 2;

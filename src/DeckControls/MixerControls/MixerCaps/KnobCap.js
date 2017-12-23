@@ -1,18 +1,18 @@
 import React from 'react';
 import styled from 'styled-components'
 
-function KnobCap({width = 60, rotation = -50, outerCircleColor = 'orange', label = 'Filter', leftCircleText = '-6dB', rightCircleText = '+6dB'}) {
+function KnobCap({diameter = 60, rotation = -50, outerCircleColor = 'orange', label = 'Filter', leftCircleText = '-6dB', rightCircleText = '+6dB'}) {
     const rotationNormalized = rotation * maxRotation;
-    return <Grid width={width}>
-        <KnobCircle width={width} color={outerCircleColor}>
-            <Knob width={width}/>
+    return <Grid width={diameter}>
+        <KnobCircle width={diameter} color={outerCircleColor}>
+            <Knob width={diameter}/>
             <MarkerRotateDiv rotation={rotationNormalized}>
-                <KnobMarker width={width}/>
+                <KnobMarker width={diameter}/>
             </MarkerRotateDiv>
         </KnobCircle>
-        <LeftCircleText width={width}>{leftCircleText}</LeftCircleText>
-        <Label width={width}>{label}</Label>
-        <RightCircleText width={width}>{rightCircleText}</RightCircleText>
+        <LeftCircleText width={diameter}>{leftCircleText}</LeftCircleText>
+        <Label width={diameter}>{label}</Label>
+        <RightCircleText width={diameter}>{rightCircleText}</RightCircleText>
     </Grid>
 }
 

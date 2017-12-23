@@ -13,7 +13,7 @@ class App extends Component {
             <DeckControl index={1}/>
             <TwoChannelMixer/>
             <DeckControl index={2}/>
-            <Knob/>
+            <Knob diameter={60}/>
         </Content>
       </Container>
     );
