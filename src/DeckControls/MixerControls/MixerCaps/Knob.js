@@ -32,8 +32,8 @@ export default class Knob extends React.Component {
     }
 
     render() {
-        const { diameter } = this.props;
-        const { value } = this.state;
+        const {diameter} = this.props;
+        const {value} = this.state;
         return (
             <Container diameter={diameter}>
                 <UpperFaderHider diameter={diameter}/>
@@ -45,8 +45,9 @@ export default class Knob extends React.Component {
                     ref="input"
                     value={value}
                     onChange={event => this.handleChange(event)}
+                    onClick={() => this.resetKnob()}
                     onMouseUp={() => this.restOffset()}
-                    onWheel={ () => React.findDOMNode(this.refs.input).focus()}
+                    onWheel={() => React.findDOMNode(this.refs.input).focus()}
                 />
                 <LowerFaderHider diameter={diameter}/>
                 <KnobCap diameter={diameter} rotation={value}/>
@@ -59,6 +60,23 @@ export default class Knob extends React.Component {
         this.setState({
             offset: -value
         });
+    }
+
+    resetKnob() {
+        const {clicked} = this.state;
+        if (clicked) {
+            this.setState({
+                value: 0,
+                offset: 0,
+            });
+        }
+        else {
+            this.setState({clicked: true});
+            setTimeout(() => {
+                this.setState({clicked: false})
+            }, 333);
+        }
+
     }
 }
 
