@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 
-function KnobCap({width = 60, rotation = -1, outerCircleColor = 'orange', label = 'Filter', leftCircleText = '-6dB', rightCircleText = '+6dB'}) {
+function KnobCap({width = 60, rotation = -50, outerCircleColor = 'orange', label = 'Filter', leftCircleText = '-6dB', rightCircleText = '+6dB'}) {
     const rotationNormalized = rotation * maxRotation;
     return <Grid width={width}>
         <KnobCircle width={width} color={outerCircleColor}>
@@ -18,13 +18,11 @@ function KnobCap({width = 60, rotation = -1, outerCircleColor = 'orange', label 
 
 export default KnobCap;
 
-const maxRotation = 132;
+const maxRotation = 1.32;
 
 const KnobCircle = styled.div`
     display: grid;
     justify-items: center;
-    width: ${props => props.width}px;
-    height: ${props => props.width}px;
     border: ${props => props.width / 30}px solid ${props => props.color};
     box-sizing: border-box;
     border-radius: 50%;
@@ -63,7 +61,12 @@ const KnobMarker = CenteredGrid.extend`
 `;
 
 const Grid = styled.div`
-    height: ${props => props.width * 1.35}px;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    justify-self: center;
+    width: ${props => props.width}px;
+    height: ${props => props.width}px;
     display: grid;
 `;
 
