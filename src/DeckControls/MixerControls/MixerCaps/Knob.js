@@ -7,7 +7,8 @@ export default class Knob extends React.Component {
         super(props);
 
         this.state = {
-            value: this.props.value,
+            value: 0,
+            offset: 0
         }
     }
 
@@ -16,37 +17,53 @@ export default class Knob extends React.Component {
     }
 
     handleChange(value) {
-        const newValue= value.target.value;
+        const newValue = value.target.value;
+        const {offset} = this.state;
+        let valueCleaned = newValue - offset;
+        if (valueCleaned > maxValue) valueCleaned = maxValue;
+        if (valueCleaned < minValue) valueCleaned = minValue;
         this.setState({
-            value: newValue,
+            value: valueCleaned,
         }, () => {
             if (this.props.onChangeValue) {
-                this.props.onChangeValue(this.state.value)
+                this.props.onChangeValue(-this.state.value)
             }
         })
     }
 
     render() {
         const { diameter } = this.props;
+        const { value } = this.state;
         return (
             <Container diameter={diameter}>
                 <UpperFaderHider diameter={diameter}/>
                 <KnobInput
                     diameter={diameter}
                     type="range"
-                    min={-100}
-                    max={100}
+                    min={minValue}
+                    max={maxValue}
                     ref="input"
-                    value={this.state.value}
+                    value={value}
                     onChange={event => this.handleChange(event)}
+                    onMouseUp={() => this.restOffset()}
                     onWheel={ () => React.findDOMNode(this.refs.input).focus()}
                 />
                 <LowerFaderHider diameter={diameter}/>
-                <KnobCap diameter={diameter} rotation={this.state.value}/>
+                <KnobCap diameter={diameter} rotation={value}/>
             </Container>
         )
     }
+
+    restOffset() {
+        const {value} = this.state;
+        this.setState({
+            offset: -value
+        });
+    }
 }
+
+const maxValue = 100;
+const minValue = -100;
 
 const Container = styled.div`
     position: relative;
