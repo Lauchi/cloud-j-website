@@ -10,6 +10,7 @@ class DeckControl extends Component {
 
         return <div>
             <Knob/>
+            <Knob/>
             <LineFader/>
         </div>
     }

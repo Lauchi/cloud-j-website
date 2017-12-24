@@ -10,7 +10,8 @@ export default class Knob extends React.Component {
         this.state = {
             value: 0,
             offset: 0,
-            doubleClicked: false
+            doubleClicked: false,
+            isDragging: false
         }
     }
 
@@ -35,12 +36,12 @@ export default class Knob extends React.Component {
 
     render() {
         const {diameter} = this.props;
-        const {value} = this.state;
+        const {value, isDragging} = this.state;
         return (
             <Container diameter={diameter}>
-                <UpperFaderHider diameter={diameter}/>
                 <KnobInput
                     diameter={diameter}
+                    isDragging={isDragging}
                     type="range"
                     min={minValue}
                     max={maxValue}
@@ -49,9 +50,9 @@ export default class Knob extends React.Component {
                     onChange={event => this.handleChange(event)}
                     onClick={() => this.resetKnob()}
                     onMouseUp={() => this.restOffset()}
+                    onMouseDown={() => this.widenDragBox()}
                     onWheel={() => React.findDOMNode(this.refs.input).focus()}
                 />
-                <LowerFaderHider diameter={diameter}/>
                 <KnobCap diameter={diameter} rotation={value}/>
             </Container>
         )
@@ -60,8 +61,10 @@ export default class Knob extends React.Component {
     restOffset() {
         const {value} = this.state;
         this.setState({
-            offset: -value
+            offset: -value,
+            isDragging: false
         });
+        this.forceUpdate();
     }
 
     resetKnob() {
@@ -79,6 +82,10 @@ export default class Knob extends React.Component {
             }, 333);
         }
     }
+
+    widenDragBox() {
+        this.setState({isDragging: true});
+    }
 }
 
 const maxValue = 100;
@@ -90,26 +97,13 @@ const Container = styled.div`
     height: ${props => props.diameter}px;
 `;
 
-const FaderHider = styled.div`position: absolute;
-    width: ${props => props.diameter}px;
-    height: ${props => props.diameter * 1.6}px;
-    z-index: 3;
-`;
-
-const UpperFaderHider = FaderHider.extend`
-    top: ${props => props.diameter}px;
-`;
-
-const LowerFaderHider = FaderHider.extend`
-    top: -${props => props.diameter * 1.6}px;
-`;
-
 const KnobInput = styled.input`
+    border: 1px solid red;
     position: absolute;
     -webkit-appearance: none;
     height: ${props => props.diameter}px;
-    left: -${props => props.diameter * 1.6}px;
-    width: ${props => props.diameter * 4}px;
+    left: ${props => props.isDragging ? -props.diameter * 1.6 : 0}px;
+    width: ${props => props.isDragging ? props.diameter * 4 : props.diameter}px;
     background-color: transparent;
     transform: rotate(-90deg);
     z-index: 2;
