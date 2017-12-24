@@ -42,5 +42,5 @@ const Base = styled(Knob)`
 
 const ChannelVolume = styled(LineFader)`
     grid-column: 1;
-    grid-row: 1 / 3;
+    grid-row: 1 / 4;
 `;

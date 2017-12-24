@@ -25,10 +25,10 @@ export default class Knob extends React.Component {
     }
 
     render() {
-        const {diameter} = this.props;
+        const {diameter, className} = this.props;
         const {value} = this.state;
         return (
-            <Container diameter={diameter}>
+            <Container diameter={diameter} className={className}>
                 <KnobInput
                     diameter={diameter}
                     type="range"

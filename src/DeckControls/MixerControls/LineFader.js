@@ -15,9 +15,9 @@ class LineFader extends Component {
 
     render() {
         const {rate} = this.state;
-        const {length} = this.props;
+        const {length, className} = this.props;
         let lengthString = length + 'px';
-        return <FaderContainer>
+        return <FaderContainer className={className}>
             <ReactSimpleRange
                 vertical
                 verticalSliderHeight={lengthString}
