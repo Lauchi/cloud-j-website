@@ -9,6 +9,7 @@ export default class Knob extends React.Component {
 
         this.state = {
             value: 0,
+            previousValue: 0,
             doubleClicked: false,
         }
     }
@@ -19,7 +20,7 @@ export default class Knob extends React.Component {
 
     handleChange(event) {
         const newValue = event.target.value;
-        const {value} = this.state;
+        const {value, previousValue} = this.state;
         this.setState({previousValue: newValue});
         if (newValue > value) {
             this.setState({value: value + 1})
@@ -73,7 +74,6 @@ const Container = styled.div`
 `;
 
 const KnobInput = styled.input`
-    border: 1px solid red;
     position: absolute;
     -webkit-appearance: none;
     height: ${props => props.diameter}px;
