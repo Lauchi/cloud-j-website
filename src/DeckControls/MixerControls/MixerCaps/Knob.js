@@ -9,7 +9,6 @@ export default class Knob extends React.Component {
 
         this.state = {
             value: 0,
-            previousValue: 0,
             doubleClicked: false,
         }
     }
@@ -20,13 +19,9 @@ export default class Knob extends React.Component {
 
     handleChange(event) {
         const newValue = event.target.value;
-        const {value, previousValue} = this.state;
-        this.setState({previousValue: newValue});
-        if (newValue > value) {
-            this.setState({value: value + 1})
-        } else {
-            this.setState({value: value - 1})
-        }
+        const {value} = this.state;
+        if (newValue > value) this.setState({value: value + 1});
+        if (newValue < value) this.setState({value: value - 1});
     }
 
     render() {
