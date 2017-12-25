@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
+import COLORS from "../../../Assets/COLORS";
 
 function FaderCap({width = 80}) {
-
     return <FaderBoundaries width={width}>
         <CapTop width={width}/>
         <InnerLine/>
@@ -23,7 +23,7 @@ const FaderBoundaries = styled.div`
 `;
 
 const OuterPart = styled.div`
-    background-color: #333;
+    background-color: ${COLORS.PrimaryDark()};
 `;
 
 const InnerLine = styled.div`

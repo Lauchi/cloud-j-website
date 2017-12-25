@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components'
+import COLORS from "../../../Assets/COLORS";
 
-function KnobCap({diameter = 60, rotation = -50, outerCircleColor = 'orange', label = 'Label', leftCircleText = '-6dB', rightCircleText = '+6dB'}) {
+function KnobCap({diameter = 60, rotation = -50, outerCircleColor = COLORS.PrimaryDarkOrange(), label = 'Label', leftCircleText = '-6dB', rightCircleText = '+6dB'}) {
     const rotationNormalized = rotation * maxRotation;
     return <Grid width={diameter}>
         <KnobCircle width={diameter} color={outerCircleColor}>
@@ -39,7 +40,7 @@ const Knob = CenteredGrid.extend`
     width: ${props => props.width * 0.8}px;
     height: ${props => props.width * 0.8}px;
     box-sizing: border-box;
-    background-color: #333;
+    background-color: #223843;
     border-radius: 50%;
 `;
 

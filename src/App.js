@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components'
 import TwoChannelMixer from "./Mixer/TwoChannelMixer";
+import COLORS from "./Assets/COLORS";
 
 class App extends Component {
     render() {
@@ -16,7 +17,11 @@ class App extends Component {
 }
 
 const Container = styled.div`
-    display: flex; 
+    display: flex;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: ${COLORS.PrimaryLightColor()};
     flex-direction: column;
 `;
 
@@ -24,7 +29,7 @@ const Header = styled.div`
     text-align: center;
     padding-top: 60px;
     padding-bottom: 30px;
-    background-color: aquamarine;
+    background-color: ${COLORS.PrimaryDarkOrange()};
     font-size: 60px;
 `;
 

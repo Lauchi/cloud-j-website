@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types';
 import FaderCap from "./MixerCaps/FaderCap";
 import ReactSimpleRange from 'react-simple-range';
+import COLORS from "../../Assets/COLORS";
 
 class LineFader extends Component {
     constructor() {
@@ -19,11 +20,11 @@ class LineFader extends Component {
         let lengthString = length + 'px';
         return <FaderContainer className={className}>
             <ReactSimpleRange
+                trackColor={COLORS.PrimaryDarkOrange()}
                 vertical
                 verticalSliderHeight={lengthString}
                 value={rate}
-                onChange={(event) => this.handleChange(event)}
-            >
+                onChange={(event) => this.handleChange(event)}>
                 <FaderCap/>
             </ReactSimpleRange>
         </FaderContainer>
