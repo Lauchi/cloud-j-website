@@ -84,6 +84,7 @@ export default class Knob extends React.Component {
 const Container = styled.div`
     width: ${props => props.diameter}px;
     height: ${props => props.diameter}px;
+    position: static !important;
 `;
 
 const DragContainer = styled.div.attrs({
