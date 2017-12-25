@@ -5,9 +5,9 @@ import Knob from "./MixerControls/Knob";
 
 function DeckControl() {
     return <Container>
-        <Treble/>
-        <Mid/>
-        <Base/>
+        <Treble label={'HI'}/>
+        <Mid label={'MID'}/>
+        <Base label={'LOW'}/>
         <ChannelVolume/>
     </Container>
 }

@@ -38,7 +38,7 @@ export default class Knob extends React.Component {
     }
 
     render() {
-        const {diameter, className} = this.props;
+        const {diameter, className, label} = this.props;
         const {value, isDragging} = this.state;
         return (
             <Container diameter={diameter}
@@ -49,7 +49,7 @@ export default class Knob extends React.Component {
                                diameter={diameter}
                                onMouseMove={(event) => this.handleChange(event)}
                                onMouseUp={() => this.stopDragging()}/>
-                <KnobCap diameter={diameter} rotation={value}/>
+                <KnobCap diameter={diameter} rotation={value} label={label}/>
             </Container>
         )
     }

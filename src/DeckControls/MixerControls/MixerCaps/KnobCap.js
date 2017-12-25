@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 
-function KnobCap({diameter = 60, rotation = -50, outerCircleColor = 'orange', label = 'Filter', leftCircleText = '-6dB', rightCircleText = '+6dB'}) {
+function KnobCap({diameter = 60, rotation = -50, outerCircleColor = 'orange', label = 'Label', leftCircleText = '-6dB', rightCircleText = '+6dB'}) {
     const rotationNormalized = rotation * maxRotation;
     return <Grid width={diameter}>
         <KnobCircle width={diameter} color={outerCircleColor}>
