@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import FaderCap from "./MixerCaps/FaderCap";
 import ReactSimpleRange from 'react-simple-range';

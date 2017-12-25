@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
-import LineFader from "./MixerControls/LineFader";
-import Knob from "./MixerControls/Knob";
+import LineFader from "./LineFader";
+import Knob from "./Knob";
 
-function DeckControl({knobsPositionIsLeft}) {
+function VolumeControl({knobsPositionIsLeft}) {
     return <Container>
         <EqContainer knobsPositionIsLeft={knobsPositionIsLeft}>
             <Treble label={'HI'}/>
@@ -14,7 +14,7 @@ function DeckControl({knobsPositionIsLeft}) {
     </Container>
 }
 
-export default DeckControl;
+export default VolumeControl;
 
 const Container = styled.div`
     display: grid;
