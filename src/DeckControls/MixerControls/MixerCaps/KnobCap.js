@@ -76,20 +76,19 @@ const UnselectableText = styled.div`
     user-select: none;
 `;
 
-const RightCircleText = UnselectableText.extend`
+const CircleText = UnselectableText.extend`
     grid-row: 2;
     grid-column: 1;
     font-size: ${props => props.width * 0.14}px;
-    margin-top: -${props => props.width * 0.15}px;
+    margin-top: -${props => props.width * 0.05}px;
+`;
+
+const RightCircleText = CircleText.extend`
     align-self: end;
     justify-self: end;
 `;
 
-const LeftCircleText = UnselectableText.extend`
-    grid-row: 2;
-    grid-column: 1;
-    font-size: ${props => props.width * 0.14}px;
-    margin-top: -${props => props.width * 0.15}px;
+const LeftCircleText = CircleText.extend`
     align-self: end;
     justify-self: start;
 `;
