@@ -43,10 +43,12 @@ const Knob = CenteredGrid.extend`
     border-radius: 50%;
 `;
 
-const MarkerRotateDiv = CenteredGrid.extend`
+const MarkerRotateDiv = CenteredGrid.extend.attrs({
+    rot: props => props.rotation
+})`
     display: grid;
     justify-items: center;
-    transform: rotate(${props => props.rotation}deg);
+    transform: rotate(${props => props.rot}deg);
 `;
 
 const KnobMarker = CenteredGrid.extend`

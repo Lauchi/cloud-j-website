@@ -11,7 +11,8 @@ export default class Knob extends React.Component {
             value: 0,
             previousValue: 0,
             doubleClicked: false,
-            isDragging: false
+            isDragging: false,
+            firstDragEvent: true
         }
     }
 
@@ -20,11 +21,19 @@ export default class Knob extends React.Component {
     }
 
     handleChange(event) {
-        const {value, previousValue, isDragging} = this.state;
-        if (isDragging) {
-            const newValue = event.screenY;
-            if (newValue < previousValue) this.setState({value: value + 1, previousValue: newValue});
-            if (newValue > previousValue) this.setState({value: value - 1, previousValue: newValue});
+        const {value, previousValue, isDragging, firstDragEvent} = this.state;
+        if (firstDragEvent) this.setState({firstDragEvent: false, previousValue: event.screenY});
+        else {
+            if (isDragging) {
+                let newValue = event.screenY;
+                let cleanedValue = value + previousValue - newValue;
+                if (cleanedValue > 100) cleanedValue = 100;
+                if (cleanedValue < -100) cleanedValue = -100;
+                this.setState({
+                    value: cleanedValue,
+                    previousValue: newValue
+                });
+            }
         }
     }
 
@@ -67,7 +76,7 @@ export default class Knob extends React.Component {
     }
 
     stopDragging() {
-        this.setState({isDragging: false});
+        this.setState({isDragging: false, firstDragEvent: true});
         this.forceUpdate()
     }
 }
