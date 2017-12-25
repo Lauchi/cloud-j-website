@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import styled from 'styled-components'
-import KnobCap from "./KnobCap";
+import KnobCap from "./MixerCaps/KnobCap";
 
 export default class Knob extends React.Component {
     constructor(props) {
