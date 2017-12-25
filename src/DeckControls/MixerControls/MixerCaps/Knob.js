@@ -9,7 +9,9 @@ export default class Knob extends React.Component {
 
         this.state = {
             value: 0,
+            previousValue: 0,
             doubleClicked: false,
+            isDragging: false
         }
     }
 
@@ -18,34 +20,33 @@ export default class Knob extends React.Component {
     }
 
     handleChange(event) {
-        const newValue = event.target.value;
-        const {value} = this.state;
-        if (newValue > value) this.setState({value: value + 1});
-        if (newValue < value) this.setState({value: value - 1});
+        const {value, previousValue, isDragging} = this.state;
+        if (isDragging) {
+            const newValue = event.screenY;
+            if (newValue > previousValue) this.setState({value: value + 1, previousValue: newValue});
+            if (newValue < previousValue) this.setState({value: value - 1, previousValue: newValue});
+        }
     }
 
     render() {
         const {diameter, className} = this.props;
-        const {value} = this.state;
+        const {value, isDragging} = this.state;
         return (
-            <Container diameter={diameter} className={className}>
-                <KnobInput
-                    diameter={diameter}
-                    type="range"
-                    min={-100}
-                    max={100}
-                    ref="input"
-                    value={value}
-                    onChange={event => this.handleChange(event)}
-                    onClick={() => this.resetKnob()}
-                    onWheel={() => React.findDOMNode(this.refs.input).focus()}
-                />
-                <KnobCap diameter={diameter} rotation={value}/>
+            <Container diameter={diameter}
+                       className={className}
+                       onMouseDown={() => this.startDragging()}
+                       onClick={() => this.resetKnobOnDoubleClick()}>
+                <DragContainer isDragging={isDragging}
+                               diameter={diameter}
+                               onMouseMove={(event) => this.handleChange(event)}
+                               onMouseUp={() => this.stopDragging()}>
+                    <KnobCap diameter={diameter} rotation={value}/>
+                </DragContainer>
             </Container>
         )
     }
 
-    resetKnob() {
+    resetKnobOnDoubleClick() {
         const {doubleClicked} = this.state;
         if (doubleClicked) {
             this.setState({
@@ -60,33 +61,34 @@ export default class Knob extends React.Component {
             }, 333);
         }
     }
+
+    startDragging() {
+        this.setState({isDragging: true});
+        this.forceUpdate()
+    }
+
+    stopDragging() {
+        this.setState({isDragging: false});
+        this.forceUpdate()
+    }
 }
 
 const Container = styled.div`
+    border: 1px solid red; 
     position: relative;
     width: ${props => props.diameter}px;
     height: ${props => props.diameter}px;
 `;
 
-const KnobInput = styled.input`
+const DragContainer = styled.div.attrs({
+    zindex: props => props.isDragging ? 9 : -1,
+    bordercol: props => props.isDragging ? 'blue' : 'green'
+})`
     position: absolute;
-    -webkit-appearance: none;
-    height: ${props => props.diameter}px;
-    left: 0;
-    width: ${props => props.diameter}px;
-    background-color: transparent;
-    transform: rotate(-90deg);
-    z-index: 2;
-    
-    &:focus{
-        outline: none;
-    }
-    
-    &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 0;
-        height: 0;
-    }
+    border: 1px solid ${props => props.bordercol};
+    width: ${props => props.diameter * 4}px;
+    height: ${props => props.diameter * 8}px;
+    z-index: ${props => props.zindex};
 `;
 
 Knob.defaultProps = {

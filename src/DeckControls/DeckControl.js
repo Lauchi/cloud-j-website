@@ -1,22 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 import styled from 'styled-components'
 import LineFader from "./MixerControls/LineFader";
 import Knob from "./MixerControls/MixerCaps/Knob";
 
-class DeckControl extends Component {
-    constructor() {
-        super();
-    }
-
-    render() {
-
-        return <Container>
-            <Treble/>
-            <Mid/>
-            <Base/>
-            <ChannelVolume/>
-        </Container>
-    }
+function DeckControl() {
+    return <Container>
+        <Treble/>
+        <Mid/>
+        <Base/>
+        <ChannelVolume/>
+    </Container>
 }
 
 export default DeckControl;

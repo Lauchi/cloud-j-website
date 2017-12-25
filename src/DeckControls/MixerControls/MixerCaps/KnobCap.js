@@ -37,7 +37,7 @@ const CenteredGrid = styled.div`
 
 const Knob = CenteredGrid.extend`
     width: ${props => props.width * 0.8}px;
-    height: ${props => props.width  * 0.8}px;
+    height: ${props => props.width * 0.8}px;
     box-sizing: border-box;
     background-color: #333;
     border-radius: 50%;
@@ -53,7 +53,7 @@ const KnobMarker = CenteredGrid.extend`
     overflow: hidden;
     border-radius: ${props => props.width / 15}px;
     width: ${props => props.width * 0.13}px;
-    height: ${props => props.width  * 0.45}px;
+    height: ${props => props.width * 0.45}px;
     margin-bottom: ${props => props.width * 0.42}px;;
     border: ${props => props.width / 30}px solid black;
     box-sizing: border-box;
@@ -67,7 +67,14 @@ const Grid = styled.div`
     display: grid;
 `;
 
-const RightCircleText = styled.div`
+const UnselectableText = styled.div`
+    -webkit-user-select: none;      
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+`;
+
+const RightCircleText = UnselectableText.extend`
     grid-row: 2;
     grid-column: 1;
     font-size: ${props => props.width * 0.14}px;
@@ -76,7 +83,7 @@ const RightCircleText = styled.div`
     justify-self: end;
 `;
 
-const LeftCircleText = styled.div`
+const LeftCircleText = UnselectableText.extend`
     grid-row: 2;
     grid-column: 1;
     font-size: ${props => props.width * 0.14}px;
@@ -85,7 +92,7 @@ const LeftCircleText = styled.div`
     justify-self: start;
 `;
 
-const Label = styled.div`
+const Label = UnselectableText.extend`
     grid-row: 3;
     grid-column: 1;
     justify-self: center;
