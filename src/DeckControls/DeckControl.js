@@ -18,17 +18,22 @@ const Container = styled.div`
     display: grid;
 `;
 
-const Treble = styled(Knob)`
+const CenteredKnob = styled(Knob)`
+    align-self: center;
+    justify-self: center;
+`;
+
+const Treble = CenteredKnob.extend`
     grid-column: 2;
     grid-row: 1;
 `;
 
-const Mid = styled(Knob)`
+const Mid = CenteredKnob.extend`
     grid-column: 2;
     grid-row: 2;
 `;
 
-const Base = styled(Knob)`
+const Base = CenteredKnob.extend`
     grid-column: 2;
     grid-row: 3;
 `;
