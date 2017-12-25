@@ -3,12 +3,14 @@ import styled from 'styled-components'
 import LineFader from "./MixerControls/LineFader";
 import Knob from "./MixerControls/Knob";
 
-function DeckControl() {
+function DeckControl({knobsPositionIsLeft}) {
     return <Container>
-        <Treble label={'HI'}/>
-        <Mid label={'MID'}/>
-        <Base label={'LOW'}/>
-        <ChannelVolume/>
+        <EqContainer knobsPositionIsLeft={knobsPositionIsLeft}>
+            <Treble label={'HI'}/>
+            <Mid label={'MID'}/>
+            <Base label={'LOW'}/>
+        </EqContainer>
+        <ChannelVolume knobsPositionIsLeft={knobsPositionIsLeft}/>
     </Container>
 }
 
@@ -18,27 +20,32 @@ const Container = styled.div`
     display: grid;
 `;
 
+const EqContainer = styled.div`
+    display: grid;
+    grid-row: 1;
+    padding-left: 30px;
+    padding-right: 30px;
+    grid-column: ${props => props.knobsPositionIsLeft ? 1 : 2};
+`;
+
 const CenteredKnob = styled(Knob)`
     align-self: center;
     justify-self: center;
 `;
 
 const Treble = CenteredKnob.extend`
-    grid-column: 2;
     grid-row: 1;
 `;
 
 const Mid = CenteredKnob.extend`
-    grid-column: 2;
     grid-row: 2;
 `;
 
 const Base = CenteredKnob.extend`
-    grid-column: 2;
     grid-row: 3;
 `;
 
 const ChannelVolume = styled(LineFader)`
-    grid-column: 1;
-    grid-row: 1 / 4;
+    grid-column: ${props => props.knobsPositionIsLeft ? 2 : 1};
+    grid-row: 1;
 `;

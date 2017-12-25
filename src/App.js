@@ -9,9 +9,9 @@ class App extends Component {
       <Container>
         <Header>Cloud-J</Header>
         <Content>
-            <DeckControl index={1}/>
+            <DeckControl index={1} />
             <TwoChannelMixer/>
-            <DeckControl index={2}/>
+            <DeckControl index={2} knobsPositionIsLeft/>
         </Content>
       </Container>
     );

@@ -46,7 +46,7 @@ const FaderContainer = styled.div`
 `;
 
 LineFader.defaultProps = {
-    length: 400
+    length: 300
 };
 
 LineFader.propTypes = {
