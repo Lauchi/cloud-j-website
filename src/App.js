@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import DeckControl from "./DeckControls/DeckControl";
-import TwoChannelMixer from "./Mixer/Channel2Mixer";
+import TwoChannelMixer from "./Mixer/TwoChannelMixer";
 
 class App extends Component {
   render() {
@@ -9,9 +8,7 @@ class App extends Component {
       <Container>
         <Header>Cloud-J</Header>
         <Content>
-            <DeckControl index={1} />
             <TwoChannelMixer/>
-            <DeckControl index={2} knobsPositionIsLeft/>
         </Content>
       </Container>
     );
