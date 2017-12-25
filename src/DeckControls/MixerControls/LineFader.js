@@ -39,7 +39,6 @@ export default LineFader;
 
 const FaderContainer = styled.div`
     position: relative;
-    background-color: black;
     width: 90px;
     padding-top:30px;
     padding-bottom:30px;
