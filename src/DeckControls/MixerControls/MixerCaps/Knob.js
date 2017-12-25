@@ -23,8 +23,8 @@ export default class Knob extends React.Component {
         const {value, previousValue, isDragging} = this.state;
         if (isDragging) {
             const newValue = event.screenY;
-            if (newValue > previousValue) this.setState({value: value + 1, previousValue: newValue});
-            if (newValue < previousValue) this.setState({value: value - 1, previousValue: newValue});
+            if (newValue < previousValue) this.setState({value: value + 1, previousValue: newValue});
+            if (newValue > previousValue) this.setState({value: value - 1, previousValue: newValue});
         }
     }
 
@@ -39,9 +39,8 @@ export default class Knob extends React.Component {
                 <DragContainer isDragging={isDragging}
                                diameter={diameter}
                                onMouseMove={(event) => this.handleChange(event)}
-                               onMouseUp={() => this.stopDragging()}>
-                    <KnobCap diameter={diameter} rotation={value}/>
-                </DragContainer>
+                               onMouseUp={() => this.stopDragging()}/>
+                <KnobCap diameter={diameter} rotation={value}/>
             </Container>
         )
     }
@@ -74,20 +73,18 @@ export default class Knob extends React.Component {
 }
 
 const Container = styled.div`
-    border: 1px solid red; 
-    position: relative;
     width: ${props => props.diameter}px;
     height: ${props => props.diameter}px;
 `;
 
 const DragContainer = styled.div.attrs({
     zindex: props => props.isDragging ? 9 : -1,
-    bordercol: props => props.isDragging ? 'blue' : 'green'
 })`
     position: absolute;
-    border: 1px solid ${props => props.bordercol};
-    width: ${props => props.diameter * 4}px;
-    height: ${props => props.diameter * 8}px;
+    height:100%;
+    width: 100%;
+    top: 0;
+    left: 0;
     z-index: ${props => props.zindex};
 `;
 
