@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 function TransportControl({index}) {
     return <Container>
+        <div>Test export</div>
         <ControlButton>Play</ControlButton>
         <ControlButton>Sync</ControlButton>
         <ControlButton>Sync</ControlButton>
