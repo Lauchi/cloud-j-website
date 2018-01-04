@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import './style.css';
+
 
 function TransportControl({index}) {
     return <Container>
-        <div className={"wohoo"}>Test export</div>
+        <div className="classOne">jeah</div>
         <ControlButton>Play</ControlButton>
         <ControlButton>Sync</ControlButton>
         <ControlButton>Sync</ControlButton>
