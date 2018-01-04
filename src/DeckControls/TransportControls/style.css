@@ -1,4 +1,12 @@
+.classZero {
+    border-bottom: 2px solid blue;
+}
+
 .classOne {
     border-bottom: 2px solid green;
     border-top: 2px solid red;
+}
+
+.classTwo {
+    border-top: 2px solid beige;
 }
