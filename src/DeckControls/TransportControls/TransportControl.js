@@ -6,7 +6,7 @@ import './style.css';
 
 function TransportControl({index}) {
     return <Container>
-        <div className="classOne">jeah</div>
+        <div className="classOne classTwo">jeah</div>
         <ControlButton>Play</ControlButton>
         <ControlButton>Sync</ControlButton>
         <ControlButton>Sync</ControlButton>
